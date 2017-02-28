@@ -1,0 +1,437 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>5R7 Numerical methods in Geotechnical Engineering</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!-- MathJax -->
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+
+    <!-- Script for Video play back on Slide for multiple videos-->
+    <script
+      src = "js/video.js">
+    </script>
+
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Section -->
+            <section>
+              <section>
+                <h2>Numerical methods in Geotechnical Engineering</h2>
+                <h3>FEM, MPM and DEM</h3>
+                <p>
+                  <br/>Krishna Kumar, <a href="mailto:kks32@cam.ac.uk">kks32@cam.ac.uk</a>
+                  <br/>University of Cambridge
+                </p>
+                <br/>
+                <div style="float: left; width: 100%;">
+                  <span style="float: left; width: 33%; text-align: center;">
+                    <img style="border:0;" src="images/themes/cued.png" width="100%">
+                  </span>
+                  <span style="float: left; width: 33%; text-align: center;">
+                    <img style="border:0;" src="images/themes/cb-geo-text-white.png" width="100%">
+                  </span>
+                  <span style="float: right; width: 33%; text-align: center;">
+                    <img style="border:0;" src="images/themes/berkeley.png" width="100%">
+                  </span>
+                </div>
+                <br/><br/>
+                <h4>5R7 Lent 2017.</h4>
+              </section>
+            </section>
+
+            
+            <!-- Numerical methods in geomehcanics -->
+            <section>
+
+              <!-- Multiscale approach -->
+              <section>
+                <h2>Multiscale modelling in geomechanics</h2>
+	        <figure>
+	          <img src="images/multiscale.png" width="100%">
+	        </figure>                  
+              </section>
+
+              <!-- Discrete Element Method -->
+              <section>
+                <h2>Discrete Element Method</h2>
+		 <div style="float: left; width: 50%;">
+ 		  <ul>
+		    <li> Particle level interaction based on Newton's equation 
+		    of motion</li><br />
+		    <li> The contact force is computed as: </li><br />
+		    <div class="block" style="clear: both; width: 85%">
+		    $F_n=\left\{ \begin{matrix} \text{              }0\text{         },\text{ }{{\delta }_{n}}>0  \\
+	   -{{k}_{n}}{{\delta }_{n}}-{{\gamma }_{n}}\frac{d{{\delta }_{n}}}{dt},\text{ }{{\delta }_{n}}<0  \\
+	\end{matrix} \right.$
+		    </div>
+                    <li> The contact tangential force is computed in a similar way,
+                      but has a frictional limit: $$ F_t = \mu F_n $$
+                    </li>
+		    <br />
+		    <li> Solve the Newton's equation of motion and the angular momentum
+                    (including rotational resistance)
+		    $$F_n =m \times a $$</li>
+		  </ul>
+		</div>
+		 <div style="float: right; width: 50%;">
+		  <video  width="90%" autoplay controls loop>
+		    <source src="media/tennis_balls.webm" type="video/webm">
+	  	      Your browser does not support the video tag.
+		  </video>
+		</div>
+              </section>
+
+              <!-- DEM -->
+              <section>
+                <h2>DEM Strain localisation</h2>
+	        <img src="images/dem-shear.png" width="100%">
+              </section>
+
+              <!-- Dilation -->
+              <section>
+                <h2>DEM: Dilation</h2>
+	        <img src="images/dem-dilation.png" width="100%">
+              </section>
+
+              <!-- Internal friction -->
+              <section>
+                <h2>DEM: Friction</h2>
+	        <img src="images/dem-friction.png" width="100%">
+              </section>
+
+              <section>
+                <h2>DEM Limitations: number of particles</h2>
+                <figure>
+	          <img src="images/dem-ngrains.png" width="60%">
+                  <figcaption>O' Sullivan (2014)</figcaption>
+                </figure>
+              </section>
+
+              <section>
+                <h2>DEM: Pros and Cons</h2>
+                <ul>
+                  <li>Can simulate individual grains and their behaviour</li>
+                  <li>Now proven as a tool that can reproduce characteristic mechanical behaviour of sand</li>
+                  <li>There is currently a transition towards the use of high performance computing</li>
+                  <li>DEM can allow us to explore stress states that are not easily attainable in the lab</li>
+                  <li>DEM can complement laboratory testing where interpretation is complex</li>
+                  <li>DEM can inform design guidelines for problems that are driven by particle-scale
+                    interaction</li>
+                  <li>Validation is important, plotting the critical state line can be useful to assess whether a model is reasonable</li>
+                  <li>Modelling exact particle shapes - Level Set algorithms </li>
+                  <li>Modelling realistic number of particles is difficult </li>
+                </ul>
+              </section>
+
+
+              <!-- LBM DEM a6 -->
+              <section>
+                <h3>LBM - DEM simulation of granular collapse in fluid</h3>
+                <br/>
+                <video  width="100%" controls loop>
+                  <source src="media/a6_slope5.webm" type="video/webm">
+  	            Your browser does not support the video tag.
+                </video>
+                <br/>
+                <br/>aspect ratio 'a' of 6 on a slope of 5*<br />
+              </section>
+
+              <!-- LBM MRT -->
+              <section>
+                <h2> Lattice Boltzmann - MRT </h2>
+                <div style="float: left; width: 47%;">
+                  <figure>
+	            <img src="images/lbm_fluid.png" width ="80%">
+	            <figcaption style = "font-size: 80%; text-align: center; "> Real Fluid vs LBM Idealisation </figcaption>
+                  </figure>
+                </div>
+                <div style="float: right; width: 47%;">
+                  <figure>
+		    <img src="images/d2q9.png" width = "80%">
+		    <figcaption style = "font-size: 80%; text-align: center;">
+                      LBM D2Q9 Model
+                    </figcaption>
+		  </figure>
+	        </div>
+	        <br/>
+	        <div style="clear: both; width: 85%">
+	          \[f_{i}(x + dx, t +\Delta t) - f_{i}(x, t) = -S_{\alpha i}(
+                  f_{i}(x, t) - f_{i} ^ {eq}(x, t))\]
+                </div>
+                <ul>
+                  <li>$S_{
+        \alpha i
+      }
+      $ is the collisional matrix.</ li><li> Probability density of finding a
+          particle : $f(x,\varepsilon, t) $,
+          where, x is position, $\varepsilon$ is velocity,
+          and t is time.</ li></ ul><div style = "float: left; width: 47%;"><
+              figure><img src = "images/stream.png" width = "80%"><
+              figcaption style = "font-size: 80%; text-align: center;">
+                  Streaming</ figcaption></ figure></ div><
+                      div style = "float: right; width: 47%;"><figure><
+                      img src = "images/collision.png" width = "80%"><
+                      figcaption style = "font-size: 80%; text-align: center;">
+                      Collision</ figcaption></ figure></ div></ section>
+
+              <!--LBM - DEM fluid solid coupling--><section><h3> LBM -
+              DEM fluid -
+              solid coupling</ h3><div style = "float: left; width: 70%;"><
+                  figure><img src = "images/lbm-dem.png" width =
+                              "70%"></ figure><div class = "block">
+                  $$\Delta t_{s} =\frac{\Delta t} {
+        \mathit { n }
+        _ { s }
+      }
+      \qquad(\mathit { n } _{s} = [\Delta t / \Delta t_{D}] + 1)
+          $$</ div><ul><li>
+              At every fluid iteration, $\mathit {
+        n
+      }
+      _ { s }
+      $ sub -
+          steps of DEM iterations are performed using the time step $\Delta t_ {
+        s
+      }
+      $.</ li><li> The hydrodynamic force is unchanged during the sub -
+              cycling
+                  .</ li></ ul></ div><div style = "float: right; width: 30%;"><
+                      video id = "Kissing" width = "50%" controls loop><
+                      source src = "media/tumble.webm" type = "video/webm">
+                      Your browser does not support the video
+                          tag.</ video></ div></ section>
+
+              <!--Turulence modelling in LBM--><section><h2> LBM laminar &
+          turbulent flows</ h2><div style = "float: left; width: 47%;"><figure><
+              img src = "images/obstacle_lbm.png" width = "80%"><
+              figcaption style = "font-size: 80%; text-align: center; ">
+              Lattice Boltzmann</ figcaption></ figure><br /><figure><
+                  img src = "images/obstacle_cfd.png" width = "85%"><
+                  figcaption style = "font-size: 80%; text-align: center; ">
+                  CFD</ figcaption></ figure></ div><
+                      div style = "float: right; width: 47%;"><figure><
+                      img src = "images/poiseuille.png" width = "70%"><
+                      figcaption style = "font-size: 80%; text-align: center;">
+                      Poiseuille Flow</ figcaption></ figure><p> Smagorinsky
+                          model(LES)
+          : </ p> $\nu_{s}(x, t) = (C_s \Delta) ^ 2\sqrt {
+        S_ { ij }
+        S_ { ij }
+      }
+      \mbox { ; }
+      S_{
+          ij} =\frac{1} {2}(\frac{\partial u_i} {\partial x_j} +\frac{\partial
+                                    u_j} {\partial x_i})
+                   $<video id = "Karman" width = "120%" controls><
+                       source src = "media/karman.webm" type = "video/webm">
+                       Your browser does not support the video
+                           tag.</ video><br />
+                               Karman Vortex Street</ div></ section>
+
+               <!--LBM DEM 10, 000 particles--><section><h3> LBM -
+               DEM a = 0.8 & 10,
+       000 partilces</ h3><br /><video width = "100%" controls loop><
+           source src = "media/a08_r095_7000.webm" type = "video/webm">
+           Your browser does not support the video tag.</ video><br /><ul><li>
+               LBM Nodes = 50 Million
+       : DEM grains =
+             10000 discs</ li><li> Real - time =
+                 2 seconds</ li><li> Run - time = 4 hours</ li><li> Speedup =
+                     25x on a Tesla K20</ li></ section>
+
+                     <!--Multiphase--><section><h2>
+                         LBM multi -
+                     component multi -
+                     phase</ h2><br /><video width = "100%" controls loop><
+                         source src = "media/3d-lbm-multiphase.webm" type =
+                             "video/webm">
+                         Your browser does not support the
+                             video tag.</ video></ section></ section>
+
+                     <!--Mesh - free approaches--><section><
+                         !--Mesh based vs Mesh - free approach--><section><h2>
+                         Mesh -
+                     based vs Mesh -
+                     free techniques</ h2><figure><
+                         img src = "images/continuum_approaches.png" width =
+                             "100%"></ figure></ section>
+
+                     <!--Material Point Method--><section><h2>
+                         Material Point Method</ h2><figure><
+                             img src = "images/mpm_soil.png" width = "100%"><
+                             figcaption style =
+                                 "font-size: 80%; text-align: center; ">
+                             Porosity in MPM</ figcaption></ figure></ section>
+
+                     <!--Material Point Method--><section><h2>
+                         Material Point Method</ h2><
+                             div style = "float: left; width: 30%;"><figure><
+                             img src = "images/mpm_equation.png" width =
+                                 "100%"></ figure></ div><
+                             div style = "float: left; width: 70%;"><figure><
+                             img src = "images/mpm_algorithm.png" width =
+                                 "100%"></ figure></ div></ section>
+
+                     <!--MPM slope--><section><h2>
+                         MPM slope failure</ h2><
+                             video width = "100%" autoplay controls loop><
+                             source src = "media/mpm_100j.webm" type =
+                                 "video/webm">
+                             Your browser does not support the video
+                                 tag.</ video></ section>
+
+                     <!--MPM slope--><section><h2>
+                         MPM slope
+                         failure</ h2><h3>(two - phase two -
+                                           particle simulation)</ h3><
+                                        video width =
+                                            "100%" autoplay controls loop><
+                                        source src =
+                                            "media/selborne.webm" type =
+                                                "video/webm">
+                             Your browser does not support the video tag.<
+                                 / video><p><
+                                 a href = "https://www.researchgate.net/"
+                                          "profile/Krishna_Kumar80/publication/"
+                                          "284547124_Trends_in_large-"
+                                          "deformation_analysis_of_landslide_"
+                                          "mass_movements_with_particular_"
+                                          "emphasis_on_the_material_point_"
+                                          "method/links/"
+                                          "5693bd8308ae820ff0727d45.pdf">
+                                 Soga et al(2016)</ a></ p></ section>
+
+                     <section><h2>
+                         Mechanism of submarine runout</ h2><
+                             img src = "images/water_entrainment.png" width =
+                                 "100%"></ section>
+
+                     </ section>
+
+                     <!--Lattice Element Method--><section><
+                         !--Lattice Element Method--><section><h2>
+                         Lattice Element Method</ h2><
+                             div style = "float: left; width: 50%;"><figure><
+                             img src = "images/lem.png" style =
+                                 "width:80%"></ figure></ div><
+                             div style = "float: right; width: 50%;"><figure><
+                             img src = "images/voro.png" width =
+                                 "100%"></ figure></ div></ section>
+
+                     <!--LEM Fluid coupling--><section><h2>
+                         Lattice Element Method -
+                     Fluid
+                         coupling</ h2><div style = "float: left; width: 50%;"><
+                             figure><img src = "images/pipe-network.png" style =
+                                         "width:80%"></ figure></ div><
+                             div style = "float: right; width: 50%;"><ul><li>
+                             First assume injection pressure $P_ {
+        in
+      }
+      $ and injection rate $Q_ { in }
+      $ at injection point</ li><li>
+          Solve fluid pressure at each fluid node</ li><li> Convert pressure to
+              node force and solve LEM to update fracture aperture</ li><li>
+                  Repeat the above process until convergence</ li></ ul> $$q =
+                      - \frac{h ^ 3} {
+        12\mu
+      }
+      \frac{dp} { dx }$$
+  	        </div>
+              </section>
+
+              <!-- LEM Hydraulic fracturing -->
+              <section>
+                <h2>LEM hydraulic fracturing</h2>
+                <video  width="100%" controls loop>
+                  <source src="media/lem.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+                <p>John Wong, University of Cambridge</p>
+              </section>
+            </section>
+
+            <!-- Summary -->
+            <section>
+              <!-- Thank you! -->
+              <section>
+                <h1>Thank you!</h1>
+                <p>
+                  <br/> Krishna Kumar, <a href="mailto:kks32@cam.ac.uk">kks32@cam.ac.uk</a>
+		  <br/>
+                  <br/><a href="https://www.cb-geo.com">www.cb-geo.com</a>
+                </p>
+                <br/>
+                <br/><br/>
+
+                <div style="float: left; width: 100%;">
+                  <span style="float: left; width: 33%; text-align: center;">
+                    <img style="border:0;" src="images/themes/cued.png" width="100%">
+                  </span>
+                  <span style="float: left; width: 33%; text-align: center;">
+                    <img style="border:0;" src="images/themes/cb-geo-text-white.png" width="100%">
+                  </span>
+                  <span style="float: right; width: 33%; text-align: center;">
+                    <img style="border:0;" src="images/themes/berkeley.png" width="100%">
+                  </span>
+                </div>
+              </section>
+            </section>
+            <!-- Special thanks to Chitra atthai! -->
+        </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            history: true,
+            slideNumber: 'c/t',
+            // More info https://github.com/hakimel/reveal.js#dependencies
+            dependencies: [{
+                src: 'plugin/markdown/marked.js'
+            }, {
+                src: 'plugin/markdown/markdown.js'
+            }, {
+                src: 'plugin/notes/notes.js',
+                async: true
+            }, {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                callback: function() {
+                    hljs.initHighlightingOnLoad();
+                }
+            }]
+        });
+    </script>
+</body>
+
+</html>
