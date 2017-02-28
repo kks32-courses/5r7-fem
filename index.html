@@ -121,7 +121,7 @@
 
               <!-- Internal friction -->
               <section>
-                <h2>DEM: Friction</h2>
+                <h2>DEM Friction</h2>
 	        <img src="images/dem-friction.png" width="100%">
               </section>
 
@@ -163,6 +163,7 @@
               </section>
 
               <!-- LBM MRT -->
+              <!-- LBM MRT -->
               <section>
                 <h2> Lattice Boltzmann - MRT </h2>
                 <div style="float: left; width: 47%;">
@@ -185,184 +186,210 @@
                   f_{i}(x, t) - f_{i} ^ {eq}(x, t))\]
                 </div>
                 <ul>
-                  <li>$S_{
-        \alpha i
-      }
-      $ is the collisional matrix.</ li><li> Probability density of finding a
-          particle : $f(x,\varepsilon, t) $,
-          where, x is position, $\varepsilon$ is velocity,
-          and t is time.</ li></ ul><div style = "float: left; width: 47%;"><
-              figure><img src = "images/stream.png" width = "80%"><
-              figcaption style = "font-size: 80%; text-align: center;">
-                  Streaming</ figcaption></ figure></ div><
-                      div style = "float: right; width: 47%;"><figure><
-                      img src = "images/collision.png" width = "80%"><
-                      figcaption style = "font-size: 80%; text-align: center;">
-                      Collision</ figcaption></ figure></ div></ section>
+                  <li>$S_{\alpha i}$ is the collisional matrix.</li>
+                  <li>Probability density of finding a particle : $f(x,\varepsilon, t) $,
+                    where, x is position, $\varepsilon$ is velocity, and t is time.</li>
+                </ul>
+                <div style="float: left; width: 47%;">
+                  <figure><img src = "images/stream.png" width = "80%">
+                    <figcaption style = "font-size: 80%; text-align: center;">
+                      Streaming
+                    </figcaption>
+                  </figure>
+                </div>
+                <div style="float: right; width: 47%;">
+                  <figure>
+                    <img src = "images/collision.png" width = "80%">
+                    <figcaption style = "font-size: 80%; text-align: center;">
+                      Collision
+                    </figcaption>
+                  </figure>
+                </div>
+              </section>
 
-              <!--LBM - DEM fluid solid coupling--><section><h3> LBM -
-              DEM fluid -
-              solid coupling</ h3><div style = "float: left; width: 70%;"><
-                  figure><img src = "images/lbm-dem.png" width =
-                              "70%"></ figure><div class = "block">
-                  $$\Delta t_{s} =\frac{\Delta t} {
-        \mathit { n }
-        _ { s }
-      }
-      \qquad(\mathit { n } _{s} = [\Delta t / \Delta t_{D}] + 1)
-          $$</ div><ul><li>
-              At every fluid iteration, $\mathit {
-        n
-      }
-      _ { s }
-      $ sub -
-          steps of DEM iterations are performed using the time step $\Delta t_ {
-        s
-      }
-      $.</ li><li> The hydrodynamic force is unchanged during the sub -
-              cycling
-                  .</ li></ ul></ div><div style = "float: right; width: 30%;"><
-                      video id = "Kissing" width = "50%" controls loop><
-                      source src = "media/tumble.webm" type = "video/webm">
-                      Your browser does not support the video
-                          tag.</ video></ div></ section>
+              <!-- LBM-DEM fluid solid coupling -->
+              <section>
+   	        <h3>LBM-DEM fluid-solid coupling </h3>
+                <div style="float: left; width: 70%;">
+                  <figure>
+                    <img src="images/lbm-dem.png" width = "70%">
+                  </figure>
+	          <div class = "block">
+	            $$\Delta t_{s}=\frac{\Delta t}{\mathit{n}_{s}} \qquad (\mathit{n}_{s}=[\Delta t/ \Delta t_{D}]+1) $$
+	          </div>
+ 	          <ul>
+		    <li>At every fluid iteration, $\mathit{n}_{s}$ 
+		      sub-steps of DEM iterations are performed using the time step $\Delta t_{s}$. </li>
+		    <li>The hydrodynamic force is unchanged during the sub-cycling. </li>
+	          </ul>
+                </div>
+                <div style="float: right; width: 30%;">
+                  <video id="Kissing" width="50%" controls loop>
+                    <source src="media/tumble.webm" type="video/webm">
+                      Your browser does not support the video tag.
+                  </video>
+                </div>
+              </section>
 
-              <!--Turulence modelling in LBM--><section><h2> LBM laminar &
-          turbulent flows</ h2><div style = "float: left; width: 47%;"><figure><
-              img src = "images/obstacle_lbm.png" width = "80%"><
-              figcaption style = "font-size: 80%; text-align: center; ">
-              Lattice Boltzmann</ figcaption></ figure><br /><figure><
-                  img src = "images/obstacle_cfd.png" width = "85%"><
-                  figcaption style = "font-size: 80%; text-align: center; ">
-                  CFD</ figcaption></ figure></ div><
-                      div style = "float: right; width: 47%;"><figure><
-                      img src = "images/poiseuille.png" width = "70%"><
-                      figcaption style = "font-size: 80%; text-align: center;">
-                      Poiseuille Flow</ figcaption></ figure><p> Smagorinsky
-                          model(LES)
-          : </ p> $\nu_{s}(x, t) = (C_s \Delta) ^ 2\sqrt {
-        S_ { ij }
-        S_ { ij }
-      }
-      \mbox { ; }
-      S_{
-          ij} =\frac{1} {2}(\frac{\partial u_i} {\partial x_j} +\frac{\partial
-                                    u_j} {\partial x_i})
-                   $<video id = "Karman" width = "120%" controls><
-                       source src = "media/karman.webm" type = "video/webm">
-                       Your browser does not support the video
-                           tag.</ video><br />
-                               Karman Vortex Street</ div></ section>
+              <!-- Turulence modelling in LBM -->
+              <section>
+		<h2>LBM laminar & turbulent flows</h2>
+                <div style="float: left; width: 47%;">
+		  <figure>
+		    <img src="images/obstacle_lbm.png" width ="80%">
+		    <figcaption style = "font-size: 80%; text-align: center; ">
+                      Lattice Boltzmann
+                    </figcaption>
+		  </figure>
+		  <br />
+		  <figure>
+		    <img src="images/obstacle_cfd.png" width ="85%">
+		    <figcaption style = "font-size: 80%; text-align: center; ">
+                      CFD
+                    </figcaption>
+		  </figure>
+	        </div>
+                <div style="float: right; width: 47%;">
+	  	  <figure>
+	  	    <img src="images/poiseuille.png" width ="70%">
+	  	    <figcaption style = "font-size: 80%; text-align: center;">
+                      Poiseuille Flow
+                    </figcaption>
+	  	  </figure>
+                  <p> Smagorinsky model (LES):</p>
+                  $\nu_{s}(x,t)=(C_s \Delta)^2\sqrt{S_{ij}S_{ij}} \mbox{  ;  } S_{ij}=\frac{1}{2}(\frac{\partial u_i}{\partial x_j}+\frac{\partial u_j}{\partial x_i})$
+	  	  <video  id="Karman" width="120%" controls>
+	  	    <source src="media/karman.webm" type="video/webm">
+	  	      Your browser does not support the video tag.
+		  </video>
+		  <br/>Karman Vortex Street
+                </div>
+              </section>
 
-               <!--LBM DEM 10, 000 particles--><section><h3> LBM -
-               DEM a = 0.8 & 10,
-       000 partilces</ h3><br /><video width = "100%" controls loop><
-           source src = "media/a08_r095_7000.webm" type = "video/webm">
-           Your browser does not support the video tag.</ video><br /><ul><li>
-               LBM Nodes = 50 Million
-       : DEM grains =
-             10000 discs</ li><li> Real - time =
-                 2 seconds</ li><li> Run - time = 4 hours</ li><li> Speedup =
-                     25x on a Tesla K20</ li></ section>
 
-                     <!--Multiphase--><section><h2>
-                         LBM multi -
-                     component multi -
-                     phase</ h2><br /><video width = "100%" controls loop><
-                         source src = "media/3d-lbm-multiphase.webm" type =
-                             "video/webm">
-                         Your browser does not support the
-                             video tag.</ video></ section></ section>
+              <!--LBM DEM 10,000 particles-->
+              <section>
+                <h3>LBM - DEM a = 0.8 & 10,000 partilces</h3>
+                <br/>
+                <video  width="100%" controls loop>
+                  <source src="media/a08_r095_7000.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+                <br/>
+                <ul>
+                  <li> LBM Nodes = 50 Million : DEM grains = 10000 discs </li>
+                  <li> Real-time = 2 seconds </li>
+                  <li> Run-time = 4 hours </li>
+                  <li> Speedup = 25x on a Tesla K20</li>
+              </section>
+              
+              <!-- Multiphase -->
+              <section>
+                <h2>LBM multi-component multi-phase</h2>
+                <br/>
+                <video  width="100%" controls loop>
+                  <source src="media/3d-lbm-multiphase.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+              </section>
+            </section>
 
-                     <!--Mesh - free approaches--><section><
-                         !--Mesh based vs Mesh - free approach--><section><h2>
-                         Mesh -
-                     based vs Mesh -
-                     free techniques</ h2><figure><
-                         img src = "images/continuum_approaches.png" width =
-                             "100%"></ figure></ section>
+                            <!-- Mesh based vs Mesh-free approach -->
+              <section>
+                <h2>Mesh-based vs Mesh-free techniques</h2>
+	        <figure>
+	          <img src="images/continuum_approaches.png" width="100%">
+	        </figure>                  
+              </section>
+              
+              <!-- Material Point Method -->
+              <section>
+                <h2>Material Point Method</h2>
+	        <figure>
+	          <img src="images/mpm_soil.png" width="100%">
+	          <figcaption style = "font-size: 80%; text-align: center; ">
+		    Porosity in MPM </figcaption>
+	        </figure>
+              </section>
 
-                     <!--Material Point Method--><section><h2>
-                         Material Point Method</ h2><figure><
-                             img src = "images/mpm_soil.png" width = "100%"><
-                             figcaption style =
-                                 "font-size: 80%; text-align: center; ">
-                             Porosity in MPM</ figcaption></ figure></ section>
+              
+              <!-- Material Point Method -->
+              <section>
+                <h2>Material Point Method</h2>
+                <div style="float: left; width: 30%;">
+	          <figure>
+		    <img src="images/mpm_equation.png" width="100%">
+                  </figure>
+	        </div>
+                <div style="float: left; width: 70%;">
+	          <figure>
+		    <img src="images/mpm_algorithm.png" width="100%">
+		  </figure>
+	        </div>
+              </section>
 
-                     <!--Material Point Method--><section><h2>
-                         Material Point Method</ h2><
-                             div style = "float: left; width: 30%;"><figure><
-                             img src = "images/mpm_equation.png" width =
-                                 "100%"></ figure></ div><
-                             div style = "float: left; width: 70%;"><figure><
-                             img src = "images/mpm_algorithm.png" width =
-                                 "100%"></ figure></ div></ section>
+              <!--MPM slope-->
+                            
+              <!-- MPM slope -->
+              <section>
+                <h2>MPM slope failure</h2>
+                <video  width="100%" autoplay controls loop>
+                  <source src="media/mpm_100j.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+              </section>
 
-                     <!--MPM slope--><section><h2>
-                         MPM slope failure</ h2><
-                             video width = "100%" autoplay controls loop><
-                             source src = "media/mpm_100j.webm" type =
-                                 "video/webm">
-                             Your browser does not support the video
-                                 tag.</ video></ section>
+              <!--MPM slope-->
+              <section>
+                <h2>MPM slope failure</h2>
+                <h3>Two-phase formulation</h3>
+                <video  width="100%" autoplay controls loop>
+                  <source src="media/selborne.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+                <p>Trends in large-deformation analysis of landslide mass movements with particular emphasis on the material point method (Soga et al 2016)</p>
+              </section>
 
-                     <!--MPM slope--><section><h2>
-                         MPM slope
-                         failure</ h2><h3>(two - phase two -
-                                           particle simulation)</ h3><
-                                        video width =
-                                            "100%" autoplay controls loop><
-                                        source src =
-                                            "media/selborne.webm" type =
-                                                "video/webm">
-                             Your browser does not support the video tag.<
-                                 / video><p><
-                                 a href = "https://www.researchgate.net/"
-                                          "profile/Krishna_Kumar80/publication/"
-                                          "284547124_Trends_in_large-"
-                                          "deformation_analysis_of_landslide_"
-                                          "mass_movements_with_particular_"
-                                          "emphasis_on_the_material_point_"
-                                          "method/links/"
-                                          "5693bd8308ae820ff0727d45.pdf">
-                                 Soga et al(2016)</ a></ p></ section>
+              <!-- Mechanism of submarine runout -->
+              <section>
+                <h2>Mechanism of submarine runout</h2>
+	        <img src="images/water_entrainment.png" width="100%">
+              </section>
 
-                     <section><h2>
-                         Mechanism of submarine runout</ h2><
-                             img src = "images/water_entrainment.png" width =
-                                 "100%"></ section>
+              
+<!-- Lattice Element Method -->
+            <section>
+              <!-- Lattice Element Method -->
+              <section>
+                <h2>Lattice Element Method</h2>
+                <div style="float: left; width: 50%;">
+	          <figure>
+	            <img src="images/lem.png" style="width:80%">
+	          </figure>
+	        </div>	
+                <div style="float: right; width: 50%;">
+	          <figure>
+	            <img src="images/voro.png" width="100%">
+	          </figure>
+	        </div>
+              </section>
 
-                     </ section>
-
-                     <!--Lattice Element Method--><section><
-                         !--Lattice Element Method--><section><h2>
-                         Lattice Element Method</ h2><
-                             div style = "float: left; width: 50%;"><figure><
-                             img src = "images/lem.png" style =
-                                 "width:80%"></ figure></ div><
-                             div style = "float: right; width: 50%;"><figure><
-                             img src = "images/voro.png" width =
-                                 "100%"></ figure></ div></ section>
-
-                     <!--LEM Fluid coupling--><section><h2>
-                         Lattice Element Method -
-                     Fluid
-                         coupling</ h2><div style = "float: left; width: 50%;"><
-                             figure><img src = "images/pipe-network.png" style =
-                                         "width:80%"></ figure></ div><
-                             div style = "float: right; width: 50%;"><ul><li>
-                             First assume injection pressure $P_ {
-        in
-      }
-      $ and injection rate $Q_ { in }
-      $ at injection point</ li><li>
-          Solve fluid pressure at each fluid node</ li><li> Convert pressure to
-              node force and solve LEM to update fracture aperture</ li><li>
-                  Repeat the above process until convergence</ li></ ul> $$q =
-                      - \frac{h ^ 3} {
-        12\mu
-      }
-      \frac{dp} { dx }$$
+              <!-- LEM Fluid coupling -->
+              <section>
+                <h2>Lattice Element Method - Fluid coupling</h2>
+                <div style="float: left; width: 50%;">
+                  <figure>
+	            <img src="images/pipe-network.png" style="width:80%">
+	          </figure>
+	        </div>	
+                <div style="float: right; width: 50%;">
+	          <ul>
+	            <li>First assume injection pressure $P_{in}$ and injection rate $Q_{in}$ at injection point</li>
+                    <li>Solve fluid pressure at each fluid node</li>
+                    <li>Convert pressure to node force and solve LEM to update fracture aperture</li>
+                    <li>Repeat the above process until convergence</li>
+	          </ul>
+	          $$q = - \frac{h^3}{12\mu}\frac{dp}{dx}$$
   	        </div>
               </section>
 
@@ -376,6 +403,8 @@
                 <p>John Wong, University of Cambridge</p>
               </section>
             </section>
+
+
 
             <!-- Summary -->
             <section>
