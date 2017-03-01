@@ -430,7 +430,7 @@
 
               
               <section>
-                <h2>Shape functions</h2>
+                <h2>1D Shape functions</h2>
                 <ul>
                   <li>Linear shape function between 2 nodes. Shape function is equal to 1 at its own node, and 0 at other nodes of the element:
 	            <figure>
@@ -443,6 +443,25 @@
                   <li>Shape function: $\mathbf{N} =\left[N_1(x) \quad  N_2(x)\right]$ and derivatives: $\mathbf{B} = \left[ \frac{dN_1(x)}{dx}  \quad \frac{dN_2(x)}{dx}\right]$ 
                  </ul>
               </section>
+
+
+
+              
+              <section>
+                <h2>FE formulation: 1D element</h2>
+                <ul>
+                  <li>Stiffness matrix for 1D element: $K_{ij} = \int_{0}^{L} \frac{dN_i}{dx} EA \frac{dN_j}{dx} dx$</li>
+                  <li>FE matrix notation: $$K_{e} = \int_{0}^{L} \mathbf{B}^T EA \mathbf{B} dx$$
+                    <br/>
+                    $$K_{e} = \int_0^L
+                    \left[ \begin{matrix} \frac{dN_1}{dx} \\ \frac{dN_2}{dx} \end{matrix} \right] EA
+                    \left[ \begin{matrix} \frac{dN_1}{dx} & \frac{dN_2}{dx}  \end{matrix} \right] dx$$
+                    <br/>
+                    $$K_{e} = \frac{EA}{l} \left[\begin{matrix} 1 & -1 \\ -1 & 1 \end{matrix} \right]$$
+                  </li>
+                 </ul>
+              </section>
+                           
             </section>
 
             <!-- Mesh based vs Mesh-free approach -->
