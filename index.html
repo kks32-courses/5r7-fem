@@ -113,16 +113,25 @@
 	        <img src="images/dem-shear.png" width="100%">
               </section>
 
-              <!-- Dilation -->
-              <section>
-                <h2>DEM: Dilation</h2>
-	        <img src="images/dem-dilation.png" width="100%">
-              </section>
-
               <!-- Internal friction -->
               <section>
-                <h2>DEM Friction</h2>
-	        <img src="images/dem-friction.png" width="100%">
+                <h2>Micro to Macro</h2>
+                <div style="float: left; width: 40%;">
+	          <figure>
+	            <img src="images/simple_shear.png" width="70%">
+                    <figcaption>
+                      Simple shear test
+                    </figcaption>
+	          </figure>                  
+                </div>
+                <div style="float: right; width: 60%;">
+	          <figure>
+	            <img src="images/sxy_vs_syy.png" width="100%">
+                    <figcaption>
+                      Critical state friction angle
+                    </figcaption>
+	          </figure>
+                </div>
               </section>
 
               <section>
@@ -303,6 +312,13 @@
 	        </figure>                  
               </section>
 
+              <section>
+                <h2>FEA</h2>
+	        <figure>
+	          <img src="images/fem.png" width="100%">
+	        </figure>                  
+              </section>
+
               <!-- FEA Strong form -->
               <section>
                 <h2>Strong form</h2>
@@ -311,7 +327,122 @@
 	        </figure>                  
               </section>
 
+              <!-- FEA Strong form 1D Bar -->
+              <section>
+                <h2>Strong form for a 1D bar</h2>
+	        <figure>
+	          <img src="images/strong-form-1d-bar.png" width="100%">
+	        </figure>                  
+              </section>
+
+              <section>
+                <h2>Strong form for a 1D bar</h2>
+                <ul>
+                  <li>Equilibrium equation: $ -\frac{dN}{dx} = f $</li>
+                  <li>Linear elasticity: $ N = A \sigma = EA \frac{du}{dx} = EA\epsilon $</li>
+                  <li>Inserting the constitutive model into the equilibrium equation:
+                  $$ -\frac{d}{dx}\left(EA\frac{du}{dx}\right) = f$$</li>
+                  <li>Boundary conditions: <br/>
+                    $u = 0$ at $x = 0$ (displacement or "Dirichlet" boundary condition)<br/>
+                    $EA\epsilon = h$ at $ x = L $ (force or "Neumann" boundary condition)
+                  </li>
+                </ul>
+              </section>
+
+              <!-- Weakform -->
+              <section>
+                <h2>Converting Strong form to Weak form</h2>
+                <p>The weak form is solved approximately using the finite element method</p>
+                <ul>
+                  <li>Multiply the strong form equation by a weight function $v$ which is equal to zero where Dirichlet (displacement) boundary conditioons are applied, but is otherwise arbitrary (must be sufficiently continous)</li>
+                  <li>Use integration by parts to `shift` derivatives to the weight fucntion</li>
+                  <li>Insert the Neumann (force) boundary conditions</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2>Weak form for a 1D bar</h2>
+                <ul>
+                  <li>Multiply by weight function: $$ -\int_{0}^{L}v\frac{dN}{dx}dx = \int_{0}^{L}vf dx$$</li>
+                  <li>Integration by parts:  $$ \int_{0}^{L}\frac{dv}{dx} N dx = \int_{0}^{L}vf dx + vN|_{x=0}^{x=L}$$</li>
+                  <li>Since $v(0) = 0$, inserting the constitutive relation and considering the force boundary at $x = L$:
+                    $$ \int_{0}^{L}\frac{dv}{dx} EA \frac{du}{dx} dx = \int_{0}^{L}vf dx + v(L)h$$</li>
+                </ul>
+              </section>              
+
+
+              <!-- Finite element formulation-->
+              <section>
+                <h2>Finite Element formulation in 1D</h2>
+                <ul>
+                  <li>FE is a <emph>Galerkin method<emph>, which approximates a PDE by replacing the unknown function (the displacement $u$ in the case of the elastic bar) and the weight function $v$ by approximate fields ($u_h$ and $v_h$). Inserting these fields:
+                    $$ \int_{0}^{L}EA \frac{dv_h}{dx} \frac{du_h}{dx} dx = \int_{0}^{L}v_h f dx + v_h(L)h$$</li>
+                  <li>The approximate displacement field $u_h$ is defined using a set of basis functions $N_i(x)$ and values $a_i$ at a discrete number of points $x_i$ (known as nodes).  For $n$ number of nodes, the approximate displacement field:  $$ u_h(x) = \sum_{i}^{n} N_i (x) a_i$$</li>
+                  <li>In FE, the basis functions $N_i$ are <emph>"Shape functions"</emph>. The approximate strain field follows:
+                    $$ \epsilon_h = \frac{du_h}{dx} = \sum_{i}^{n}\frac{dN_i(x)}{dx} a_i$$</li>
+                </ul>
+              </section>
               
+              <section>
+                <h2>Finite Element formulation in 1D</h2>
+                <ul>
+                  <li>FE involves fining the coefficients of $a_i$, which gives approximate solution $u_h$ and $\epsilon_h$. </li>
+                  <li>The simplese FE basis function for 1D are hat-like continous piecewise linear polynomials. Each node $i$ has its own shape function and own dof. A shape function is equal to 1 at its own node and 0 at all others
+	            <figure>
+	              <img src="images/shape-functions.png" width="100%">
+	            </figure>
+                </li>
+                </ul>
+              </section>
+
+              <section>
+                <h2>Finite Element formulation in 1D</h2>
+                <ul>
+                  <li>Weakform:
+                    
+                    $$ \int_{0}^{L}EA \frac{dv_h}{dx} \frac{du_h}{dx} dx = \int_{0}^{L}v_h f dx + v_h(L)h$$</li>
+                  <li>Inserting expressions for $u_h$ and $v_h$:
+                    
+                    $$ \int_{0}^{L}EA \left(\sum_i^n\frac{dN_i}{dx}{a_i^*}\right)\left(\sum_j^n\frac{dN_j}{dx}{a_j}\right) = \int_{0}^{L}\left(\sum_i^nN_ia_i^*\right) f dx + \left(\sum_i^nN_i(L)a_i^*\right)h$$</li>
+                  <li>Since $a_i^*$ and $a_j$ are not functions of $x$:
+                    
+                    $$ \sum_i^n {a_i^*} \left(\sum_j^n {a_j} \int_{0}^{L}EA \frac{dN_i}{dx}\frac{dN_j}{dx}\right) = \sum_i^n a_i^*\int_{0}^{L}N_i f dx + \sum_i^nN_i(L)a_i^*h$$</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2>Finite Element formulation in 1D</h2>
+                <ul>
+                  <li>Since $a_i^*$ is arbitrary for each $i$ we set $a_{k=i}^*=1$ and $a_{k \ne i}^*=1$. Then for each $i$ we have an equation with $n$ unknowns (the values of $a_j$):
+                    
+                    $$ i = 1: \sum_j^n {a_j} \int_{0}^{L}EA \frac{dN_1}{dx}\frac{dN_j}{dx} dx = \int_{0}^{L}N_1 f dx + N_i(L)h,$$
+                    $$ i = 2: \sum_j^n {a_j} \int_{0}^{L}EA \frac{dN_2}{dx}\frac{dN_j}{dx} dx = \int_{0}^{L}N_2 f dx + N_i(L)h,$$
+                    $$\dots$$
+                    $$ i = n: \sum_j^n {a_j} \int_{0}^{L}EA \frac{dN_n}{dx}\frac{dN_j}{dx} dx = \int_{0}^{L}N_n f dx + N_i(L)h,$$
+                  </li>
+                  <li>A system of linear equationos is most conveniently expressed as a matrix:
+                    $$ \mathbf{K a} = \mathbf{b} $$</li>
+                  <li>Stiffness matrix: $K_{ij} = \int_{0}^{L}EA \frac{dN_i}{dx}\frac{dN_j}{dx} dx$<br>
+                    right-hand side vector: $b_i = \int_{0}^{L}N_i f dx + N_i(L)h$.</li>
+                </ul>
+              </section>
+
+
+              
+              <section>
+                <h2>Shape functions</h2>
+                <ul>
+                  <li>Linear shape function between 2 nodes. Shape function is equal to 1 at its own node, and 0 at other nodes of the element:
+	            <figure>
+	              <img src="images/1d-shape-function.png" width="50%">
+	            </figure>
+                  </li>
+                  <li>The displacement field: $u_h(x) = N_1(x) a_1 + N_2 (x) a_2 = (-\frac{x}{l} +1) a_1 + \frac{x}{l}a_2$</li>
+                  <li>The strain field: $\epsilon_h(x) = \frac{dN_1(x)}{dx} a_1 + \frac{dN_2 (x)}{dx} a_2 = -\frac{1}{l} a_1 + \frac{1}{l}a_2$</li>
+                  <li>In matrix format: $ u_h = \mathbf{Na_e} $ and $\epsilon_h = \mathbf{Ba_e}$.</li>
+                  <li>Shape function: $\mathbf{N} =\left[N_1(x) \quad  N_2(x)\right]$ and derivatives: $\mathbf{B} = \left[ \frac{dN_1(x)}{dx}  \quad \frac{dN_2(x)}{dx}\right]$ 
+                 </ul>
+              </section>
             </section>
 
             <!-- Mesh based vs Mesh-free approach -->
