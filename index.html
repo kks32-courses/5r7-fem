@@ -99,7 +99,7 @@
             <h2>Converting Strong form to Weak form</h2>
             <p>The weak form is solved approximately using the finite element method</p>
             <ul>
-              <li>Multiply the strong form equation by a weight function $v$ which is equal to zero where Dirichlet (displacement) boundary conditioons are applied, but is otherwise arbitrary (must be sufficiently continous)</li>
+              <li>Multiply the strong form equation by a weight function $v$ which is equal to zero where Dirichlet (displacement) boundary conditions are applied, but is otherwise arbitrary (must be sufficiently continous)</li>
               <li>Use integration by parts to `shift` derivatives to the weight fucntion</li>
               <li>Insert the Neumann (force) boundary conditions</li>
             </ul>
@@ -135,12 +135,26 @@
               </li>
             </ul>
           </section>
+          <!-- Finite element formulation-->
+          <section>
+            <h2>Basis functions</h2>
+            <div style="float: left; width: 50%;">
+               <figure>
+                  <img style = "border:0;" src="images/discretisation2.png" width="100%">
+               </figure>
+            </div>
+            <div style="float: left; width: 50%;">
+               <figure>
+                  <img style = "border:0;" src="images/discretisation1.png" width="100%">
+               </figure>
+            </div>
+          </section>
           <section>
             <h2>Finite Element formulation in 1D</h2>
             <ul>
-              <li>FE involves fining the coefficients of $a_i$, which gives approximate solution $u_h$ and $\epsilon_h$. </li>
+              <li>FE involves finding the coefficients of $a_i$, which gives approximate solution $u_h$ and $\epsilon_h$. </li>
               <li>
-                The simplese FE basis function for 1D are hat-like continous piecewise linear polynomials. Each node $i$ has its own shape function and own dof. A shape function is equal to 1 at its own node and 0 at all others
+                The simplest FE basis function for 1D are hat-like continous piecewise linear polynomials. Each node $i$ has its own shape function and own dof. A shape function is equal to 1 at its own node and 0 at all others
                 <figure>
                   <img src="images/shape-functions.png" width="100%">
                 </figure>
@@ -206,44 +220,6 @@
                 $$K_{e} = \frac{EA}{l} \left[\begin{matrix} 1 & -1 \\ -1 & 1 \end{matrix} \right]$$
               </li>
             </ul>
-          </section>
-          <section>
-            <h2> Isoparametric shape functions</h2>
-            <figure>
-              <img src = "images/1d-isoparametric-shapefn.png" width ="75%">
-            </figure>
-            <ul>
-              <li>Shape functions : $N_1^e = \frac{1}{2}(1 - \xi)$ and $N_1^e = \frac{1}{2}(1 + \xi)$</li>
-              <li>Displacement is approximated as: $T(\xi) = N_1(\xi) T_1^e + N_2(\xi) T_2^e$</li>
-            </ul>
-            <figure>
-              <img src = "images/2d-isoparametric-shapefn.png" width ="75%">
-            </figure>
-          </section>
-        </section>
-        <!-- Summary -->
-        <section>
-          <!-- Thank you! -->
-          <section>
-            <h1>Thank you!</h1>
-            <p>
-              <br/> Krishna Kumar, <a href="mailto:kks32@cam.ac.uk">kks32@cam.ac.uk</a>
-              <br/>
-              <br/><a href="https://www.cb-geo.com">www.cb-geo.com</a>
-            </p>
-            <br/>
-            <br/><br/>
-            <div style="float: left; width: 100%;">
-              <span style="float: left; width: 33%; text-align: center;">
-              <img style="border:0;" src="images/themes/cued.png" width="100%">
-              </span>
-              <span style="float: left; width: 33%; text-align: center;">
-              <img style="border:0;" src="images/themes/cb-geo-text-white.png" width="100%">
-              </span>
-              <span style="float: right; width: 33%; text-align: center;">
-              <img style="border:0;" src="images/themes/berkeley.png" width="100%">
-              </span>
-            </div>
           </section>
         </section>
         <!-- Special thanks to Chitra atthai! -->
