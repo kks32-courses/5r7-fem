@@ -80,6 +80,23 @@
               <img src="images/strong-form-1d-bar.png" width="100%">
             </figure>
           </section>
+          <!-- FEA Strong form 1D Bar -->
+          <section>
+            <h2>Strong form for a 1D bar</h2>
+            <figure>
+              <img src="images/integral-strong-form.png" width="50%">
+            </figure>
+            <p>
+              The forces $h$ acting at the ends of the bar are related to the
+              normal force in the bar $N$ via $h = N n_x$, where $n_x$ is the
+              ‘outward unit normal’ at the ends of the bar. </p>
+            <p>To satisfy equilibrium, forces acting on the bar must sum to zero.</p>
+            <p>
+              $$0 = h(L) + h(0) + \int_{0}^{L}{f \mathrm{dx}} => N(L) - N(0) + \int_{0}^{L}{f \mathrm{dx}}$$ (since $h = Nn_x$)
+              $$0 =  \int_{0}^{L}{\frac{dN}{dx} \mathrm{dx}} + \int_{0}^{L}{f \mathrm{dx}}$$
+              All ‘smaller’ parts of the bar must also be in equilibrium, therefore we can remove the integrals, $-\frac{dN}{dx} = f$.
+            </p>
+          </section>
           <section>
             <h2>Strong form for a 1D bar</h2>
             <ul>
@@ -220,6 +237,12 @@
                 $$K_{e} = \frac{EA}{l} \left[\begin{matrix} 1 & -1 \\ -1 & 1 \end{matrix} \right]$$
               </li>
             </ul>
+          </section>
+          <section>
+            <h2>Finite Element Analysis of a Cantilever beam</h2>
+            <figure>
+              <img src="images/cantilever.png" width="100%">
+            </figure>
           </section>
         </section>
         <!-- Special thanks to Chitra atthai! -->
